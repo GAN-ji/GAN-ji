@@ -23,11 +23,18 @@ scratch부터 훈련, 사전학습된 얼굴 생성 모델 그리고 여러 시�
 <p align='center'>
   <img src='/asset/emojify.gif?  width='100' height='100'>
   <img src='/asset/emojify(2).gif? width='100' height='100'>
-  <img src='/asset/emojify(3).gif? width='100' height='100' >
+  <img src='/asset/emojify(3).gif? width='100' height='100'>
                                                            </p align='center'>
                                                            
 ## `completed`
 
+                                                                             
+## `Requirements`
+- PyTorch 1.9.1
+- CUDA 11.1
+- streamlit 1.4.0
+                                                                             
+                                                                             
 ## `References`
 - https://github.com/rosinality/stylegan2-pytorch
 - 
