@@ -20,9 +20,11 @@ scratch부터 훈련, 사전학습된 얼굴 생성 모델 그리고 여러 시�
 <p align='center'><img src='/asset/GAN-ji-gif(2).gif?raw=1' width = '900' ></p>
 
 ### 2. 
-<p align='center'><img src='/asset/emojify.gif?  width='100' height='100'></p>
-<p align='center'><img src='/asset/emojify(2).gif? width='100' height='100'></p>
-<p align='center'><img src='/asset/emojify(3).gif? width='100' height='100' ></p>
+<p align='center'>
+  <img src='/asset/emojify.gif?  width='100' height='100'>
+  <img src='/asset/emojify(2).gif? width='100' height='100'>
+  <img src='/asset/emojify(3).gif? width='100' height='100' >
+</p>
 ## `completed`
 
 ## `References`
