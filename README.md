@@ -40,7 +40,7 @@ Custom dataset을 이용한 타 프로젝트에서 많이 사용된 rosinality�
 
 ## `Closed Form Factorization`
 <p align='center'>
-<img src='/asset/customize your emoji.gif? raw=1' width = '900' ></p>
+<img src='/asset/customize your emoji.gif? raw=1' width = '600' ></p>
 </p>
 
 Latent Space에서의 변화는 이미지에 다양한 영향을 미친다. 아직 자세하게 탐구가 된 부분은 아니지만, Latent Space에서의 이미지 조작을 하기 위해 다양한 시도를 하고 있다. 
