@@ -68,9 +68,9 @@ if __name__ == '__main__':
 
     
     if open_notion:
-        utils_.open_link('https://bottlenose-client-925.notion.site/GAN-ji-0f10fdc083a244f5b15a97dd1c797d71')
+        open_link('https://bottlenose-client-925.notion.site/GAN-ji-0f10fdc083a244f5b15a97dd1c797d71')
     if open_github:
-        utils_.open_link('https://github.com/GAN-ji')
+        open_link('https://github.com/GAN-ji')
 
 
     # download model
