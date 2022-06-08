@@ -1,4 +1,10 @@
-# GAN-ji
+<div align="right">
+  
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FGAN-ji&count_bg=%23A6D2FE&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+<a href="https://github.com/mybloodykeyboard">![](https://img.shields.io/static/v1?label=github&message=박정우&color=blueviolet)</a>
+<a href="https://github.com/kim-seo-hyun">![](https://img.shields.io/static/v1?label=github&message=김서현&color=ff69b4)</a>
+<a href="https://github.com/paulcho98">![](https://img.shields.io/static/v1?label=github&message=조현빈&color=brightgreen)</a>
+</div>
 
 ## `Introduction`
 <p align='center'><b> ✨ Inference using Streamlit ✨</b></p> 
