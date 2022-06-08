@@ -1,11 +1,21 @@
-# GAN-ji
+<div align="right">
+  
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FGAN-ji&count_bg=%23A6D2FE&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+<a href="https://modulabs.co.kr/">![](https://img.shields.io/badge/-MODULABS-white)</a>
+<a href="https://github.com/mybloodykeyboard">![](https://img.shields.io/static/v1?label=😃&message=박정우&color=blueviolet)</a>
+<a href="https://github.com/kim-seo-hyun">![](https://img.shields.io/static/v1?label=😎&message=김서현&color=ff69b4)</a>
+<a href="https://github.com/paulcho98">![](https://img.shields.io/static/v1?label=😗&message=조현빈&color=brightgreen)</a>
+</div>
+
 
 ## `Introduction`
 <p align='center'><b> ✨ Inference using Streamlit ✨</b></p> 
-<p align='center'><img src='/asset/streamlit.gif?raw=1' width = '900' ></p>
+<p align='center'><img src='/asset/streamlit_final.gif?raw=1' width = '900' ></p>
 
 - 2022.04.25 ~ 2022.06.10
-- 소속: Aiffel 양재캠퍼스
+- Aiffel YJ AIFFELTHON
+- Team GAN-ji
+- 팀장: 박정우, 팀원: 김서현, 조현빈
 - 유례가 없는 팬데믹으로 인한 디지털 가속화, 국내 7000억 규모의 이모티콘 시장에서 이모지가 디지털 미디어를 통한 소통에 아주 중요한 역할을 한다. 하지만 제한된 종류로 의사소통의 한계가 명확하다는 점, 개인을 위한 맞춤 이모티콘 서비스의 부재, 그리고 궁금증과 흥미 등의 이유로 GAN을 이용한 맞춤 이모티콘 생성 서비스 배포를 팀 프로젝트로 진행하였다.
 scratch부터 훈련, 사전학습된 얼굴 생성 모델 그리고 여러 시도들을 통해 훈련을 진행했다. joypixel의 emoji dataset을 super resolution을 통해 128부터 256, 512, 1024까지 여러 사이즈로 훈련을 시도했고, dataset도 여러 번 수정하여 1500~3000장 사이로 사용했다.훈련 환경은 GCP를 통한  V100(1개)과 구글 코랩 P100(1개) 두 가지를 이용하였다. 최종적으로 서비스 구현에 사용한 것은 256x256 해상도에서 전이학습을 한 것을 사용했다.
 
@@ -40,7 +50,7 @@ Custom dataset을 이용한 타 프로젝트에서 많이 사용된 rosinality�
 
 ## `Closed Form Factorization`
 <p align='center'>
-<img src='/asset/customize your emoji.gif? raw=1' width = '900' ></p>
+<img src='/asset/customize your emoji.gif? raw=1' width = '600' ></p>
 </p>
 
 Latent Space에서의 변화는 이미지에 다양한 영향을 미친다. 아직 자세하게 탐구가 된 부분은 아니지만, Latent Space에서의 이미지 조작을 하기 위해 다양한 시도를 하고 있다. 
@@ -74,12 +84,17 @@ Closed Form Factorization은 비지도 학습을 통해 Latent Space에서 의�
 - 사이즈 256 FFHQ(550k) 모델에서 전이학습을 하여 100k의 훈련을 통해 만족스러운 결과를 낼 수 있엇다. 결과적으로 같은 SG2 ADA 모델에서 전혀 다른 결과가 나왔는데, GAN 훈련의 기묘함을 느끼는 동시에 NVlabs는 튜닝 가능한 여러 값들이 FFHQ나 AHQ 같은 데이터에 더욱 최적화되어 있어서 이러한 결과가 나온 것으로 보인다. 
 - Streamlit을 통해 랜덤 이모티콘 생성, Feature customize(Closed form factorization), Emojify(Network blending) 3가지 기능을 구현하여 서비스 배포를 하였다.
 - 개인의 사진을 넣어 projector를 통과시켜 emojify를 시키는 것이 가장 구현하고자 하는 기능이었지만 projector를 통과시킬 때 5분 이상 소요되는 점과 결과물로 출력되는 이모티콘이 서비스로서의 가치가 떨어진다는 점에서 배포 단계에서는 제외시켰다. 기획한 서비스의 상품성을 위해서는 projector 문제를 극복해야함은 물론 도메인 차이로 발생하는 저품질의 결과물을 개선해야 하는 숙제들을 해결해야 한다.
-
                                                                              
-## `Requirements`
-- PyTorch 1.9.1
-- CUDA 11.1
-- streamlit 1.4.0
+## `How to run this app`
+It is suggested that creating a new virtual environment, then running:
+```
+  git clone https://github.com/GAN-ji/GAN-ji.git
+  cd GAN-ji
+  pip install -r requirements.txt
+  streamlit run app.py
+```
+<b> We tested on Python 3.7.13, PyTorch 1.9.1, CUDA 11.1 </b>
+
                                                                              
                                                                              
 ## `References`
