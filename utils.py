@@ -91,4 +91,5 @@ def load_model(generator, model_file_path):
     #ensure_checkpoint_exists(model_file_path)
     ckpt = torch.load(model_file_path, map_location=lambda storage, loc: storage)
     generator.load_state_dict(ckpt["g_ema"], strict=False)
+    del ckpt
     return generator.mean_latent(50000)

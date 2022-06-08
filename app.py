@@ -2,7 +2,7 @@ import os
 import sys
 import torch
 
-import utils_
+#import utils_
 from model import *
 from utils import *
 
@@ -86,9 +86,14 @@ if __name__ == '__main__':
         size, 512, n_mlp, channel_multiplier=channel_multiplier
     ).to(device)
     checkpoint = torch.load(ckpt) 
-
+    
     g_ema.load_state_dict(checkpoint["g_ema"])
-
+    ###########################
+    del checkpoint
+    #########################
+    torch.cuda.empty_cache()
+    
+    
     mean_latent = None
 
     eigvec = torch.load('factor.pt')["eigvec"].to('cuda')
@@ -197,13 +202,20 @@ if __name__ == '__main__':
     import numpy as np
 
     from model_ import Generator_
-    from util import *
+    #from util import *
     truncation = .5
-    generator1 = Generator_(256, 512, 8, channel_multiplier=2).eval().to(device)
-    generator2 = Generator_(256, 512, 8, channel_multiplier=2).to(device).eval()
+#     generator1 = Generator_(256, 512, 8, channel_multiplier=2).eval().to(device)
+#     generator2 = Generator_(256, 512, 8, channel_multiplier=2).to(device).eval()
+    if 'generator1' not in st.session_state:
+        st.session_state.generator1 = Generator_(256, 512, 8, channel_multiplier=2).eval().to(device)
+    if 'generator2' not in st.session_state:
+        st.session_state.generator2 = Generator_(256, 512, 8, channel_multiplier=2).to(device).eval()
 
-    mean_latent1 = load_model(generator1, 'networks/ffhq256.pt')
-    mean_latent2 = load_model(generator2, 'networks/635000.pt')
+    if 'mean_latent1' not in st.session_state:
+        st.session_state.mean_latent1 = load_model(st.session_state.generator1, 'networks/ffhq256.pt')
+    if 'mean_latent2' not in st.session_state:
+        st.session_state.mean_latent2 = load_model(st.session_state.generator2, 'networks/635000.pt')
+    torch.cuda.empty_cache()
 
     col1, col2 = st.columns([2,2])
     with col1:
@@ -213,8 +225,8 @@ if __name__ == '__main__':
         
     if button1:
         source_code = torch.randn([1, 512]).to(device)
-        st.session_state.latent1 = generator1.get_latent(source_code, truncation=truncation, mean_latent=mean_latent1)
-        source_im, _ = generator1(st.session_state.latent1)
+        st.session_state.latent1 = st.session_state.generator1.get_latent(source_code, truncation=truncation, mean_latent=st.session_state.mean_latent1)
+        source_im, _ = st.session_state.generator1(st.session_state.latent1)
         utils.save_image(
             source_im,
             f"latent1.png",
@@ -224,8 +236,8 @@ if __name__ == '__main__':
         )
     if button2:
         reference_code = torch.randn([1, 512]).to(device)
-        st.session_state.latent2 = generator2.get_latent(reference_code, truncation=truncation, mean_latent=mean_latent2)
-        reference_im, _ = generator2(st.session_state.latent2)
+        st.session_state.latent2 = st.session_state.generator2.get_latent(reference_code, truncation=truncation, mean_latent=st.session_state.mean_latent2)
+        reference_im, _ = st.session_state.generator2(st.session_state.latent2)
         utils.save_image(
             reference_im,
             f"latent2.png",
@@ -246,25 +258,25 @@ if __name__ == '__main__':
     
     def toonify(latent1, latent2):
             with torch.no_grad():
-                noise1 = [getattr(generator1.noises, f'noise_{i}') for i in range(generator1.num_layers)]
-                noise2 = [getattr(generator2.noises, f'noise_{i}') for i in range(generator2.num_layers)]
+                noise1 = [getattr(st.session_state.generator1.noises, f'noise_{i}') for i in range(st.session_state.generator1.num_layers)]
+                noise2 = [getattr(st.session_state.generator2.noises, f'noise_{i}') for i in range(st.session_state.generator2.num_layers)]
 
-                out1 = generator1.input(latent1[0])
-                out2 = generator2.input(latent2[0])
+                out1 = st.session_state.generator1.input(latent1[0])
+                out2 = st.session_state.generator2.input(latent2[0])
                 out = (1-early_alpha)*out1 + early_alpha*out2
 
-                out1, _ = generator1.conv1(out, latent1[0], noise=noise1[0])
-                out2, _ = generator2.conv1(out, latent2[0], noise=noise2[0])
+                out1, _ = st.session_state.generator1.conv1(out, latent1[0], noise=noise1[0])
+                out2, _ = st.session_state.generator2.conv1(out, latent2[0], noise=noise2[0])
                 out = (1-early_alpha)*out1 + early_alpha*out2
 
-                skip1 = generator1.to_rgb1(out, latent1[1])
-                skip2 = generator2.to_rgb1(out, latent2[1])
+                skip1 = st.session_state.generator1.to_rgb1(out, latent1[1])
+                skip2 = st.session_state.generator2.to_rgb1(out, latent2[1])
                 skip = (1-early_alpha)*skip1 + early_alpha*skip2
 
                 i = 2
                 for conv1_1, conv1_2, noise1_1, noise1_2, to_rgb1, conv2_1, conv2_2, noise2_1, noise2_2, to_rgb2 in zip(
-                    generator1.convs[::2], generator1.convs[1::2], noise1[1::2], noise1[2::2], generator1.to_rgbs,
-                    generator2.convs[::2], generator2.convs[1::2], noise2[1::2], noise2[2::2], generator2.to_rgbs
+                    st.session_state.generator1.convs[::2], st.session_state.generator1.convs[1::2], noise1[1::2], noise1[2::2], st.session_state.generator1.to_rgbs,
+                    st.session_state.generator2.convs[::2], st.session_state.generator2.convs[1::2], noise2[1::2], noise2[2::2], st.session_state.generator2.to_rgbs
                 ):
 
 
@@ -297,6 +309,7 @@ if __name__ == '__main__':
         with col2:
             button = st.button("Emojify!")
         if button:
+            g_ema=g_ema.cpu()
             num_swap =  3
             alpha =  1
 
@@ -310,7 +323,7 @@ if __name__ == '__main__':
                 range=(-1, 1),
                 nrow=1,
             )
-        if os.path.isfile('emojify.png'):
-            emojify = Image.open('emojify.png')
-            st.image(emojify, caption='Emojified Image', use_column_width=True)
+            if os.path.isfile('emojify.png'):
+                emojify = Image.open('emojify.png')
+                st.image(emojify, caption='Emojified Image', use_column_width=True)
 
