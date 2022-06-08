@@ -28,7 +28,9 @@ scratch부터 훈련, 사전학습된 얼굴 생성 모델 그리고 여러 시�
 </table>
 
 ## Rosinality StyleGAN2 ADA
-![image](https://user-images.githubusercontent.com/95264469/172443161-c9b3d78c-6a0f-473e-a8f0-f3e4f53a64b7.png)
+<p align='center'>
+<img src='/asset/Rosinality StyleGAN2 ADA.png? raw=1' width = '500' ></p>
+</p>
 
 Custom dataset을 이용한 타 프로젝트에서 많이 사용된 rosinality의 StyleGAN2 ADA를 사용하였다. 흥미롭게도 훈련이 안정적으로 진행되었고 훈련의 결과가 질적으로 매우 향상되었다. 전이학습이 아닌 축소한 모델과 축소한 latent vector로 밑바닥에서 부터(220k) 훈련한 결과도 준수하게 나왔는데, 다른 dataset에서 훈련을 진행하여 정확한 비교를 하기는 무리가 있다.(FID : 39.00) 하이퍼 파라미터들은 d_reg, freeze D, latent vector 등을 조절하며 훈련을 시도해보았는데, mixing을 미적용하여 훈련했을 때 결과의 해상도가 미세하게 상승하여 팀 내 정성 평가 및 FID 점수 모두 가장 좋은 결과를 기록했다.
 
@@ -44,11 +46,12 @@ Custom dataset을 이용한 타 프로젝트에서 많이 사용된 rosinality�
 Latent Space에서의 변화는 이미지에 다양한 영향을 미친다. 아직 자세하게 탐구가 된 부분은 아니지만, Latent Space에서의 이미지 조작을 하기 위해 다양한 시도를 하고 있다. 
 Closed Form Factorization은 비지도 학습을 통해 Latent Space에서 의미 있는 변화 방향을 찾는다. 이 방법을 이용하면 다음과 같이 찾은 방향을 따라 이동하면 GAN-ji의 특징이 변한다. 
 
-![factor_index-5_degree-3 5](https://user-images.githubusercontent.com/95264469/172442977-7aca5606-7483-42e2-94ad-c60587cad164.png)
+<p align='center'>
+<img src='/asset/Closed Form Factorization.png? raw=1' width = '600' ></p>
+</p>
 
 
 ## Emojify(Network Blending)
-
 
 <p align='center'> 
   <img src='/asset/emojify.gif?  width='100' height='100'>
