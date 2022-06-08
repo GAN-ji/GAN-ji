@@ -84,13 +84,8 @@ Closed Form Factorization은 비지도 학습을 통해 Latent Space에서 의�
 - 사이즈 256 FFHQ(550k) 모델에서 전이학습을 하여 100k의 훈련을 통해 만족스러운 결과를 낼 수 있엇다. 결과적으로 같은 SG2 ADA 모델에서 전혀 다른 결과가 나왔는데, GAN 훈련의 기묘함을 느끼는 동시에 NVlabs는 튜닝 가능한 여러 값들이 FFHQ나 AHQ 같은 데이터에 더욱 최적화되어 있어서 이러한 결과가 나온 것으로 보인다. 
 - Streamlit을 통해 랜덤 이모티콘 생성, Feature customize(Closed form factorization), Emojify(Network blending) 3가지 기능을 구현하여 서비스 배포를 하였다.
 - 개인의 사진을 넣어 projector를 통과시켜 emojify를 시키는 것이 가장 구현하고자 하는 기능이었지만 projector를 통과시킬 때 5분 이상 소요되는 점과 결과물로 출력되는 이모티콘이 서비스로서의 가치가 떨어진다는 점에서 배포 단계에서는 제외시켰다. 기획한 서비스의 상품성을 위해서는 projector 문제를 극복해야함은 물론 도메인 차이로 발생하는 저품질의 결과물을 개선해야 하는 숙제들을 해결해야 한다.
-
                                                                              
 ## `How to run this app`
-
-- PyTorch 1.9.1/ CUDA 11.1
-- python 3.7.13
-- streamlit 1.4.0
 
 ```
   git clone https://github.com/GAN-ji/GAN-ji.git
