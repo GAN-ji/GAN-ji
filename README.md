@@ -21,9 +21,11 @@ scratch부터 훈련, 사전학습된 얼굴 생성 모델 그리고 여러 시�
 
 아주 초반부에는 모자, 얼굴의 각도 또는 배경 등 제법 재미있는 결과도 보였지만 급속도로 모드 붕괴 현상을 보였다. 더 높은 해상도에서 좋은 결과가 나오는 편이라고 하나 결과는 크게 다르지 않았다. 아래 결과를 통해 overfitting이나 leaking 현상이 심하다는 것도 확인 할 수 있었다. FID 점수는 200점 밑으로 떨어진 적 없이 계속 높은 값을 기록했다.
 
-<p align='center'><img src='/asset/NVlabs StyleGAN2 ADA(1).png?' width="50%" height="50%" ></p>
-<p align='center'><img src='/asset/NVlabs StyleGAN2 ADA(2).png?' width="50%" height="50%" ></p>
-
+<table>
+  <tr>
+    <td><img alt="" src='/asset/NVlabs StyleGAN2 ADA(1).png?' /></td><td><img alt="" src='/asset/NVlabs StyleGAN2 ADA(2).png?' /></td>
+  <tr>
+</table>
 
 ## Rosinality StyleGAN2 ADA
 ![image](https://user-images.githubusercontent.com/95264469/172443161-c9b3d78c-6a0f-473e-a8f0-f3e4f53a64b7.png)
@@ -45,17 +47,21 @@ Closed Form Factorization은 비지도 학습을 통해 Latent Space에서 의�
 
 ## Emojify(Network Blending)
 
+
 <p align='center'> 
   <img src='/asset/emojify.gif?  width='100' height='100'>
   <img src='/asset/emojify(2).gif? width='100' height='100'>
   <img src='/asset/emojify(3).gif? width='100' height='100'>
 </p align='center'>
-<p align='center'><hr> generated ffhq to emoji </hr></p> 
+<p align='center'><b> generated ffhq to emoji </b></p>
+                  
                  
 <p align='center'> 
   <img src='/asset/emojify(4).gif?  width='100' height='100'>
 </p align='center'>
-<p align='center'><hr> projected 공유 to emoji ** </hr></p> 
+<p align='center'><b> projected 공유 to emoji </b></p>
+
+
                                                                              
 전이학습을 통해 특정 데이터에 학습된 모델을 다른 도메인의 데이터에 이어서 학습을 하면, 두 모델 사이에 어느 정도의 공통점이 존재하게 된다. 두 모델의 각 레이어에서 적절하게 가중치를 swapping을 해주면, 자연스럽게 두 도메인을 섞을 수 있다. 다음과 같이 이모지의 형태를 유지하며 사람의 특징을 가져오는 식으로 face 도메인과 emoji 도메인의 사이의 이미지를 생성할 수 있다. 
 
@@ -72,5 +78,5 @@ Closed Form Factorization은 비지도 학습을 통해 Latent Space에서 의�
                                                                              
                                                                              
 ## `References`
-[침착한 생성모델](https://github.com/bryandlee/malnyun_faces)
-[Cartoon-StyleGAN](https://github.com/happy-jihye/Cartoon-StyleGAN)
+- [침착한 생성모델](https://github.com/bryandlee/malnyun_faces)
+- [Cartoon-StyleGAN](https://github.com/happy-jihye/Cartoon-StyleGAN)
