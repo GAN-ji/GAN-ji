@@ -2,7 +2,7 @@
 
 ## `Introduction`
 <p align='center'><b> ✨ Inference using Streamlit ✨</b></p> 
-<p align='center'><img src='/asset/GAN-ji-gif(1).gif?raw=1' width = '900' ></p>
+<p align='center'><img src='/asset/streamlit.gif?raw=1' width = '900' ></p>
 
 - 2022.04.25 ~ 2022.06.10
 - 소속: Aiffel 양재캠퍼스
