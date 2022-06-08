@@ -17,14 +17,14 @@ scratch부터 훈련, 사전학습된 얼굴 생성 모델 그리고 여러 시�
 #### (+ FreezeD and hyper parameters)
 프로젝트는 모두 StyleGAN2 ADA 위에서 이루어졌고, 처음 훈련을 시작할 때, NVlabs의 코드를 사용했다. Dataset이 굉장히 한정적이고, 굉장히 단순하기 때문에 overfitting이 매우 쉽게 일어날 것으로 보고, StyleGAN2 ADA를 처음부터 사용하였다. Tensorflow version과 pytorch version 모두 사용해보았는데 이에 대한 차이는 확인되지 않았다. Overfitting을 최대한 막기 위해 data augmentation인 하이퍼 파라미터 중 하나인 mirrored를 이용했고, 전이학습에서 Discriminator의 layer를 얼려서 훈련시키는 freeze D도 사용해보았다.
 
-![image](https://user-images.githubusercontent.com/95264469/172424276-1dd23722-afd3-4074-82dc-bc622c3368c3.png)
+<table>
+    <td><img alt="" src='/asset/dataset.jpg?' /></td><td><img alt="" src='/asset/GAN-ji.jpg?' /></td>
+</table>
 
 아주 초반부에는 모자, 얼굴의 각도 또는 배경 등 제법 재미있는 결과도 보였지만 급속도로 모드 붕괴 현상을 보였다. 더 높은 해상도에서 좋은 결과가 나오는 편이라고 하나 결과는 크게 다르지 않았다. 아래 결과를 통해 overfitting이나 leaking 현상이 심하다는 것도 확인 할 수 있었다. FID 점수는 200점 밑으로 떨어진 적 없이 계속 높은 값을 기록했다.
 
 <table>
-  <tr>
     <td><img alt="" src='/asset/NVlabs StyleGAN2 ADA(1).png?' /></td><td><img alt="" src='/asset/NVlabs StyleGAN2 ADA(2).png?' /></td>
-  <tr>
 </table>
 
 ## Rosinality StyleGAN2 ADA
@@ -32,12 +32,14 @@ scratch부터 훈련, 사전학습된 얼굴 생성 모델 그리고 여러 시�
 
 Custom dataset을 이용한 타 프로젝트에서 많이 사용된 rosinality의 StyleGAN2 ADA를 사용하였다. 흥미롭게도 훈련이 안정적으로 진행되었고 훈련의 결과가 질적으로 매우 향상되었다. 전이학습이 아닌 축소한 모델과 축소한 latent vector로 밑바닥에서 부터(220k) 훈련한 결과도 준수하게 나왔는데, 다른 dataset에서 훈련을 진행하여 정확한 비교를 하기는 무리가 있다.(FID : 39.00) 하이퍼 파라미터들은 d_reg, freeze D, latent vector 등을 조절하며 훈련을 시도해보았는데, mixing을 미적용하여 훈련했을 때 결과의 해상도가 미세하게 상승하여 팀 내 정성 평가 및 FID 점수 모두 가장 좋은 결과를 기록했다.
 
-![FID](https://user-images.githubusercontent.com/95264469/172443372-16cf0667-f671-4aab-8fb0-3a246e75f3f9.png)
-
+<p align='center'>
+<img src='/asset/FID score.png? raw=1' width = '500' ></p>
+</p>
 
 ## Closed Form Factorization
-
-![testing_customizer](https://user-images.githubusercontent.com/95264469/172446971-d63eb273-e08f-42af-8634-dceb32a7c365.gif)
+<p align='center'>
+<img src='/asset/customize your emoji.gif? raw=1' width = '900' ></p>
+</p>
 
 Latent Space에서의 변화는 이미지에 다양한 영향을 미친다. 아직 자세하게 탐구가 된 부분은 아니지만, Latent Space에서의 이미지 조작을 하기 위해 다양한 시도를 하고 있다. 
 Closed Form Factorization은 비지도 학습을 통해 Latent Space에서 의미 있는 변화 방향을 찾는다. 이 방법을 이용하면 다음과 같이 찾은 방향을 따라 이동하면 GAN-ji의 특징이 변한다. 
