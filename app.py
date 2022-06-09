@@ -143,7 +143,7 @@ if __name__ == '__main__':
     device = 'cuda'
 
     st.info('''
-    행 X 렬
+    마음에 드는 이모지를 선택하고 바꿔보세요 :D 
     ''')
     col1, col2 = st.columns([1,1])
     with col1:
