@@ -45,7 +45,7 @@ scratch부터 훈련, 사전학습된 얼굴 생성 모델 그리고 여러 시�
 Custom dataset을 이용한 타 프로젝트에서 많이 사용된 rosinality의 StyleGAN2 ADA를 사용하였다. 흥미롭게도 훈련이 안정적으로 진행되었고 훈련의 결과가 질적으로 매우 향상되었다. 전이학습이 아닌 축소한 모델과 축소한 latent vector로 밑바닥에서 부터(220k) 훈련한 결과도 준수하게 나왔는데, 다른 dataset에서 훈련을 진행하여 정확한 비교를 하기는 무리가 있다.(FID : 39.00) 하이퍼 파라미터들은 d_reg, freeze D, latent vector 등을 조절하며 훈련을 시도해보았는데, mixing을 미적용하여 훈련했을 때 결과의 해상도가 미세하게 상승하여 팀 내 정성 평가 및 FID 점수 모두 가장 좋은 결과를 기록했다.
 
 <p align='center'>
-<img src='/asset/FID score.png? raw=1' width = '500' ></p>
+<img src='/asset/FID _score.png? raw=1' width = '500' ></p>
 </p>
 
 ## `Closed Form Factorization`
